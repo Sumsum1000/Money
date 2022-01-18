@@ -13,10 +13,11 @@ export const Navbar = () => {
     return(
         <div className={style['navbar-container']}>
              <ul className={style['ul-container']}>
-                <h2>Hello {'name'}</h2>
+                <h2>Welcome {data.parentName}</h2>
                 <h2>New task</h2>
                 <h2>Completed task</h2>
                 <h2>Kids</h2>
+                <h2 className={style['add-kid']}>+</h2>
              </ul>
              <h2 onClick={onClick}>Logout</h2>
         </div>

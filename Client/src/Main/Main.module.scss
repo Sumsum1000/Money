@@ -1,1 +1,7 @@
 @import "../Theme.module.scss";
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

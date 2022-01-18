@@ -11,19 +11,30 @@ h2 {
   width: 100vw;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 20px 0;
-  padding: 10px 0;
+
   background-color: $dark-gray;
 
   ul {
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center;
     gap: 50px;
     margin-left: 40px;
   }
 
   & > h2:hover {
     color: $light-gray;
+    cursor: pointer;
+  }
+}
+
+.add-kid {
+  font-size: 25px;
+  &:hover {
+    color: $light-gray;
+    cursor: pointer;
   }
 }
