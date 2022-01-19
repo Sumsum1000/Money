@@ -21,7 +21,7 @@ export const DataContextProvider = ({children}) => {
 
     useEffect(() => {
         setData(data)
-        console.log('new data: ',);
+        console.log('new data: ', data);
     }, [data])
 
     return(

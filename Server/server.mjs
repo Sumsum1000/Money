@@ -1,13 +1,15 @@
 import express from "express";
+import { usersRouter } from "./users.router.mjs";
+import { kidsRouter } from "./kids.router.mjs";
 
-export const app = express();
+const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Server is running')
-});
+app.use(express.json());
 
-const port = process.env.PORT || 8080;
-app.use(express.static('..\Client\build'));
-app.listen(port);
+app.use('/', kidsRouter);
+app.use('/', usersRouter);
 
+
+
+app.listen(8080);
 console.log("Server is listening on http://localhost:8080!");

@@ -1,10 +1,12 @@
 import style from './NewKid.module.scss';
 import { useRef, useContext } from 'react';
+import { DataContext } from '../Context/DataContext';
 import { kidsContext } from '../Context/KidsContext';
 
 export const NewKid = () => {
 
     const { kids, setKids } = useContext(kidsContext);
+    const { data, setData } = useContext(DataContext);
 
     const mailRef = useRef();
     const nameRef = useRef();
@@ -13,14 +15,17 @@ export const NewKid = () => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        // Check if kid exists ------------------
+        // Check if kid exists by mail------------------
         // Check password -----------------------
         
         const name = nameRef.current.value; 
         const email = mailRef.current.value; 
         const password = passwordRef.current.value;
 
-        setKids([...kids , {name, email, password}])
+        setData({
+            ...data , 
+            kids :[...data.kids, {name: name, email: email, password: password}]
+        })
 
         nameRef.current.value = '';
         mailRef.current.value = '';
