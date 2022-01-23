@@ -1,10 +1,11 @@
 import style from './LogIn.module.scss'
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { DataContext } from '../Context/DataContext';
 
 export const LogIn = () => {
 
     const  { data, setData }  = useContext(DataContext);
+    const [isSignUp, setIsSignup] = useState(false);
 
     const mailRef = useRef();
     const passwordRef = useRef();
@@ -21,14 +22,24 @@ export const LogIn = () => {
         }
     }
 
+    const switchSignup = () => {
+        setIsSignup(!isSignUp)
+    }
+
     return(
         <form 
           className={style['log-in-container']}
           onSubmit={onSubmit}
         >
-            <div className={style['log-in-title']}>
+        <h3 
+            //className={style['tab-left']}
+            className={!isSignUp ? style['tab-left'] : style['tab-right']}
+            onClick={switchSignup}
+        >Sign up</h3>
+        {/* <h3 className={style['tab-right']}>Sign up</h3> */}
+            {/* <div className={style['log-in-title']}>
                 <h3>Log In</h3>
-            </div>
+            </div> */}
             <h2>Parent</h2>
 
             <div className={style['form-control']}>

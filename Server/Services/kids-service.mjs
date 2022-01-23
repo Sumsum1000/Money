@@ -1,7 +1,3 @@
-import express from "express";
-
-export const usersRouter = express.Router();
-
 const USERS_LIST = [
     { 
         id: 'u1',
@@ -27,13 +23,16 @@ const USERS_LIST = [
     },
 ]
 
-usersRouter.get('/api/users/:userid', (req, res, next) => {
+
+export const getKids = (req, res, next) => {
+    let result = null;
     const userid = req.params.userid;
-    const user = USERS_LIST.find(user => {
-       return user.id === userid;  
+    const users = USERS_LIST.find(user => {
+        return user.id === userid;
     })
-    res.json(user)
-})
 
-
-
+    if (!users) {
+        throw new HttpError('Couldnt find user id.', 404);
+    }
+    res.json(users.kids);
+}
