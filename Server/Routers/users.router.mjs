@@ -1,14 +1,21 @@
 import express from "express";
 import { HttpError } from "../Services/http-error.mjs";
-import { addUser, getUser } from "../Services/user.service.mjs";
+import { addUser, getUser, getAllUsers  } from "../Services/user.service.mjs";
 
 
 export const usersRouter = express.Router();
 
-
-usersRouter.get('/api/users/:userid', getUser);
+// Create user
 usersRouter.post('/api/users', addUser);
 
+// Get one user
+usersRouter.get('/api/users/:id', getUser);
+
+// Get all users
+usersRouter.get('/api/users', getAllUsers);
+
+// Update user
+//usersRouter.get('/api/users/:id', updateUser);
 
 
 

@@ -1,0 +1,74 @@
+@import "../Theme.module.scss";
+
+.root-container {
+  width: 400px;
+  height: 400px;
+  background-color: $dark-gray;
+  position: relative;
+  border-radius: $border-radius;
+
+  .text-container {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .text-index {
+      z-index: 5;
+    }
+  }
+
+  .tab-left {
+    width: 50%;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    border-radius: $border-radius 0 $border-radius 0;
+    background-color: $secondery-color2;
+  }
+
+  .tab-right {
+    width: 50%;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    border-radius: 0 $border-radius 0 $border-radius;
+    background-color: $secondery-color2;
+  }
+
+  .form-container {
+    width: 80%;
+    // height: 80%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    // background-color: darkolivegreen;
+  }
+
+  .form-line {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-submit {
+    width: 100%;
+    height: 40px;
+    background: $secondery-color2;
+    border: none;
+    border-radius: $border-radius/2;
+    &:hover {
+      background: $secondery-color2;
+    }
+  }
+
+  .input {
+    border: 0 solid black;
+    border-bottom: 1px solid black;
+    background: none;
+  }
+}

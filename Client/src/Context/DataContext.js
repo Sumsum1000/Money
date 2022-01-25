@@ -4,20 +4,29 @@ export const DataContext = React.createContext([]);
 
 
 
-const startData = { 
-      parentName: 'Asaf',
-      email: 'asaf@gmail.com',
-      password: '1234',
-      isLogedin: false,
-      kids: [
-          {name: 'Shaked', totalMoney: 0, email: 'shed@gmail.com', password: 1234},
-          {name: 'Yuval', totalMoney: 0, email: 'yuv@gmail.com', password: 5678}
-      ]}
+// const startData = { 
+//       parentName: 'Asaf',
+//       email: 'asaf@gmail.com',
+//       password: '1234',
+//       isLogedin: false,
+//       kids: [
+//           {name: 'Shaked', totalMoney: 0, email: 'shed@gmail.com', password: 1234},
+//           {name: 'Yuval', totalMoney: 0, email: 'yuv@gmail.com', password: 5678}
+//       ]}
+
 
 export const DataContextProvider = ({children}) => {
 
-    const [data, setData] = useState(startData);
+    //const [data, setData] = useState(startData);
+    const [data, setData] = useState({});
 
+
+
+    useEffect(() => {
+        fetch('api/users')
+        .then(data => data.json())
+        .then(result => setData(result))
+    }, [data])
 
     useEffect(() => {
         setData(data)

@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import { usersRouter } from "./Routers/users.router.mjs";
 import { kidsRouter } from "./Routers/kids.router.mjs";
 
@@ -17,5 +18,14 @@ app.use('/', usersRouter);
 // })
 
 
-app.listen(8080);
+const url = 'mongodb+srv://Niko_4001:eQqDLVwHthqTTgYL@cluster0.oqvv4.mongodb.net/users?retryWrites=true&w=majority'
+
+mongoose.connect(url)
+.then(() => {
+    app.listen(8080);
+}).catch(() => {
+    console.log('Connection failed');
+});
+
+
 console.log("Server is listening on http://localhost:8080!");

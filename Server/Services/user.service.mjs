@@ -1,15 +1,8 @@
 import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
-import { user } from "../Models/user.model.mjs";
+import { User } from "../Models/user.model.mjs";
+import { ObjectId } from "mongodb";
 
-const url = 'mongodb+srv://Niko_4001:eQqDLVwHthqTTgYL@cluster0.oqvv4.mongodb.net/users?retryWrites=true&w=majority'
-
-mongoose.connect(url)
-.then(() => {
-    console.log('Connected to database');
-}).catch(() => {
-    console.log('Connection failed');
-});
 
 const USERS_LIST = [
     { 
@@ -36,57 +29,26 @@ const USERS_LIST = [
     },
 ]
 
-
-
-export const getUser = (req, res, next) => {
-    const userid = req.params.userid;
-    const user = USERS_LIST.find(user => {
-       return user.id === userid;  
-    })
-
-    if (!user) {
-        return next(
-            new HttpError('Couldnt find user id.', 404)
-        )
-    }
-    res.json(user)
-}
-
-export const x = (req, res, next) => {
-    const name = req.body.parentName;
-    const email = req.body.email;
-    const newUser = { parentName: name,  email: email };
-    USERS_LIST.push({newUser});
-
-    res.status(201).json({newUser: newUser});
-}
-
 export const addUser = async (req, res, next) => {
-    const newUser = new user({
+    const newUser = new User({
+        id: req.body.id,
         name: req.body.name,
         email: req.body.email
     });
     const result = await newUser.save();
     res.json(result);
 };
-    
+
+export const getUser = async (req, res, next) => {
+    const userId = req.params.id;
+    const user = await User.findById(userId)
+    res.json(user);
+};
+
+export const getAllUsers = async (req, res, next) => {
+    const user = await User.find();
+    res.json(user);
+};
 
 
-// Mongo
-// export const x = async (req, res, next) => {
-//     const newUser = {
-//         name: req.body.name,
-//         email: req.body.email
-//     };
-//     const client = new MongoClient(url);
 
-//     try{
-//         await client.connect();
-//         const db = client.db();
-//         const result = await db.collection('users').insertOne(newUser);
-//     }catch(error){
-//         return res.json({message: 'couldnt store data'});
-//     };
-//     client.close();
-//     return res.json(newUser);
-// };
