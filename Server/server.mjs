@@ -20,9 +20,11 @@ app.use('/', usersRouter);
 
 const url = 'mongodb+srv://Niko_4001:eQqDLVwHthqTTgYL@cluster0.oqvv4.mongodb.net/users?retryWrites=true&w=majority'
 
+const port = process.env.PORT || 8080;
+
 mongoose.connect(url)
 .then(() => {
-    app.listen(8080);
+    app.listen(port);
 }).catch(() => {
     console.log('Connection failed');
 });

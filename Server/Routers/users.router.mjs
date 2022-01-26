@@ -9,7 +9,7 @@ export const usersRouter = express.Router();
 usersRouter.post('/api/users', addUser);
 
 // Get one user
-usersRouter.get('/api/users/:id', getUser);
+usersRouter.get('/api/users/:email', getUser);
 
 // Get all users
 usersRouter.get('/api/users', getAllUsers);

@@ -25,10 +25,7 @@ export const Logs = () => {
                 <h3 className={style['text-index']}>Signup</h3>
             </div>
             {!isLeft && <Login />}
-            {isLeft && <Signup />}
-
-            
-            
+            {isLeft && <Signup />} 
         </div>
     )
 }

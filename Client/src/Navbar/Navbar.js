@@ -17,7 +17,6 @@ export const Navbar = () => {
                 <h2>New task</h2>
                 <h2>Completed task</h2>
                 <h2>Kids</h2>
-                <h2 className={style['add-kid']}>+</h2>
              </ul>
              <h2 onClick={onClick}>Logout</h2>
         </div>

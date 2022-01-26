@@ -1,7 +1,7 @@
-import { MongoClient } from "mongodb";
-import mongoose from "mongoose";
+// import { MongoClient } from "mongodb";
+// import mongoose from "mongoose";
 import { User } from "../Models/user.model.mjs";
-import { ObjectId } from "mongodb";
+
 
 
 const USERS_LIST = [
@@ -40,8 +40,8 @@ export const addUser = async (req, res, next) => {
 };
 
 export const getUser = async (req, res, next) => {
-    const userId = req.params.id;
-    const user = await User.findById(userId)
+    const userEmail = req.params.email;
+    const user = await User.findOne({email: userEmail})
     res.json(user);
 };
 
