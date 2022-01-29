@@ -2,12 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 import { usersRouter } from "./Routers/users.router.mjs";
 import { kidsRouter } from "./Routers/kids.router.mjs";
+import cors from 'cors';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
-app.use('/', kidsRouter);
+
 app.use('/', usersRouter);
+//app.use('/', kidsRouter);
 
 // app.use((error, req, res, next) => {
 //     if (res.headerSent) {

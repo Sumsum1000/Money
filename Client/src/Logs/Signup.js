@@ -5,7 +5,7 @@ export const Signup = () => {
 
     const nameRef = useRef();
     const emailRef = useRef();
-
+    const passwordRef = useRef();
 
     const addUserToDB = (e) => {
         e.preventDefault();
@@ -13,9 +13,10 @@ export const Signup = () => {
         console.log('user added');
         const data = {
             name: nameRef.current.value,
-            //email: email.current.value
+            email: emailRef.current.value,
+            password: passwordRef.current.value
         }
-        fetch('/api/users', {
+        fetch('http://localhost:8080/api/users', {
             method:'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -37,7 +38,7 @@ export const Signup = () => {
                 <div className={style['form-line']}>
                     <label for='email'>email</label>
                     <input 
-                    ref={emailRef}
+                        ref={emailRef}
                         className={style['input']} 
                         id='email' 
                         type='email'
@@ -46,6 +47,7 @@ export const Signup = () => {
                 <div className={style['form-line']}>
                     <label for='password1'>password</label>
                     <input 
+                        ref={passwordRef}
                         className={style['input']}  
                         id='password1' 
                         type='text' 

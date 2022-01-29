@@ -30,10 +30,12 @@ const USERS_LIST = [
 ]
 
 export const addUser = async (req, res, next) => {
+    const { id, name, email, password } = req.body;
     const newUser = new User({
-        id: req.body.id,
-        name: req.body.name,
-        email: req.body.email
+        id: id,
+        name: name,
+        email: email,
+        password: password
     });
     const result = await newUser.save();
     res.json(result);
@@ -49,6 +51,17 @@ export const getAllUsers = async (req, res, next) => {
     const user = await User.find();
     res.json(user);
 };
+
+
+
+export const updateUser = async (req, res, next) => {
+    const result = await User.findOneAndUpdate(
+        {email: req.body.email}, 
+        req.body,
+        { new: true }
+    );
+    res.json(result);
+}
 
 
 

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const kidSchema = new mongoose.Schema({
     id: {
         type: String,
         required: false
@@ -19,9 +19,12 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6
     },
-    kids:{
-        type: []
+    tasks:{
+        type: [{
+            task: {type: String},
+            payment: {type: Number}
+        }]
     }
 })
 
-export const User = mongoose.model('User', userSchema);
+export const Kid = mongoose.model('Kid', kidSchema);

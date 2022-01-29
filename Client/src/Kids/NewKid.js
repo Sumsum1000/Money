@@ -11,6 +11,7 @@ export const NewKid = () => {
     const mailRef = useRef();
     const nameRef = useRef();
     const passwordRef = useRef();
+    const confirmRef = useRef();
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -24,7 +25,7 @@ export const NewKid = () => {
 
         setData({
             ...data , 
-            kids :[...data.kids, {name: name, email: email, password: password}]
+            kids :[...data.kids, {name: name, email: email }]
         })
 
         nameRef.current.value = '';
@@ -54,6 +55,11 @@ export const NewKid = () => {
           <div className={style['form-control']}>
               <label>password:</label>
               <input ref={passwordRef} type="text"  />
+          </div>
+
+          <div className={style['form-control']}>
+              <label>Confirm password:</label>
+              <input ref={confirmRef} type="text"  />
           </div>
           
           <button type="submit" className={style['btn-submit']}>Submit </button>
