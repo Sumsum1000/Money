@@ -8,6 +8,7 @@ import { Signup } from './Signup';
 export const Logs = () => {
 
     const [isLeft, setIsLeft] = useState(false);
+    const password = "aaa1234";
 
     const switchTab = () => {
         setIsLeft(!isLeft);

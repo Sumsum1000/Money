@@ -1,6 +1,6 @@
 import express from "express";
 import { HttpError } from "../Services/http-error.mjs";
-import { addUser, getUser, getAllUsers, updateUser  } from "../Services/user.service.mjs";
+import { addUser, getUser, getAllUsers, updateUser, login  } from "../Services/user.service.mjs";
 
 
 export const usersRouter = express.Router();
@@ -19,6 +19,9 @@ usersRouter.patch('/api/users/:id', updateUser);
 
 // Add kid
 //usersRouter.get('/api/users', addKid);
+
+// Login
+usersRouter.post('/api/login', login);
 
 
 

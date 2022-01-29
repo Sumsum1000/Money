@@ -19,8 +19,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6
     },
-    kids:{
+    kids: {
         type: []
+    },
+    login: {
+        type: Boolean
     }
 })
 
