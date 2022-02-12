@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
+import autopopulate from 'mongoose-autopopulate';
+import { getKid } from "../Services/kids.service.mjs";
+import { ObjectId } from "mongodb";
+
 
 const userSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: false
-    },
+
     name: {
         type: String,
         required: true
@@ -19,12 +20,16 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6
     },
-    kids: {
-        type: []
-    },
+    kids: [{
+        type: ObjectId
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'User',
+        // autopopulate: true
+    }],
     login: {
         type: Boolean
     }
 })
+
 
 export const User = mongoose.model('User', userSchema);

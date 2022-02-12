@@ -1,51 +1,28 @@
 // import { MongoClient } from "mongodb";
 // import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 import { User } from "../Models/user.model.mjs";
+import { Kid } from "../Models/kid.model.mjs";
+import { getAllKids } from "./kids.service.mjs";
 import { HttpError } from "./http-error.mjs";
 
-
-
-// const USERS_LIST = [
-//     { 
-//         id: 'u1',
-//         parentName: 'Asaf',
-//         email: 'asaf@gmail.com',
-//         password: '1234',
-//         isLogedin: false,
-//         kids: [
-//             {name: 'Shaked', totalMoney: 0, email: 'shed@gmail.com', password: 1234},
-//             {name: 'Yuval', totalMoney: 0, email: 'yuv@gmail.com', password: 5678}
-//         ]
-//     },
-//     { 
-//         id: 'u2',
-//         parentName: 'Joe',
-//         email: 'joe@gmail.com',
-//         password: '1234',
-//         isLogedin: false,
-//         kids: [
-//             {name: 'Nick', totalMoney: 0, email: 'shed@gmail.com', password: 1234},
-//             {name: 'Jane', totalMoney: 0, email: 'yuv@gmail.com', password: 5678}
-//         ]
-//     },
-// ]
 
 export const addUser = async (req, res, next) => {
     const { id, name, email, password } = req.body;
     const newUser = new User({
-        id: id,
         name: name,
         email: email,
         password: password,
-        login: false
+        login: false,
+        kids: []
     });
     const result = await newUser.save();
     res.json(result);
 };
 
 export const getUser = async (req, res, next) => {
-    const userEmail = req.params.email;
-    const user = await User.findOne({email: userEmail}, "-password")
+    const id = req.params.id;
+    const user = await User.findOne({_id: ObjectId(id)}, "-password")
     res.json(user);
 };
 
@@ -62,6 +39,13 @@ export const updateUser = async (req, res, next) => {
         { new: true }
     );
     res.json(result);
+}
+
+//usersRouter.get('/api/users/kids/:user', getKidByUserId)
+export const getKidByUserId = async (req, res, next) => {
+    const user = req.params.user
+    const kids = await Kid.find({user: ObjectId(user)}, '-password');
+    res.json(kids);
 }
 
 export const login = async (req, res, next) => {
@@ -85,8 +69,9 @@ export const login = async (req, res, next) => {
         //return next(error);
         res.json({error: error});
     }
-    
 }
+
+
 
 
 

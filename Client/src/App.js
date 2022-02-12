@@ -10,7 +10,7 @@ function App() {
 
   
   const { data } = useContext(DataContext);
-  const [isTempin, setIsTempin] = useState(false)
+  const [isTempin, setIsTempin] = useState(true)
 
   return (
     

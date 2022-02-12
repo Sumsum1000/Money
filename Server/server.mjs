@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', usersRouter);
-//app.use('/', kidsRouter);
+app.use('/', kidsRouter);
 
 // app.use((error, req, res, next) => {
 //     if (res.headerSent) {

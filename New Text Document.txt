@@ -1,0 +1,29 @@
+user/parent
+ {
+        "_id": "61f57b9913e49432f4714672",
+        "name": "Joe",
+        "email": "joe@gmail.com",
+        "password": "aaa1234",
+        "kids": ["6203f229e91c6b4e8324ae89", "6203f229e91c6b4e8324ae75" ],
+        "login": true,
+   }
+
+
+kid
+{
+        "_id": "6203f229e91c6b4e8324ae89",
+        "parentId": "61f57b9913e49432f4714672",
+        "name": "Andy",
+        "email": "andy12@gmail.com",
+        "tasks": [ "1323f229e91c6b4e8324ae77"],
+        "totalMoney": 12,
+        "login": false
+  }
+
+
+task
+{      
+        "id": "1323f229e91c6b4e8324ae77",
+        "kidId": "6203f229e91c6b4e8324ae89 ",
+        "tasks":{"feed the dog": 4}
+}
